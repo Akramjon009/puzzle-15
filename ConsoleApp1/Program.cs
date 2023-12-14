@@ -26,25 +26,52 @@ internal class Program
             var key = Console.ReadKey();
             Console.Clear();
 
-            Console.WriteLine(key.Key);
-           
-            if (key.Key == ConsoleKey.DownArrow)
+            if (false == AreArraysEqual(puzzle, puzzletrue))
             {
-                puzzle = Todown(puzzle);
+                Console.WriteLine(key.Key);
+                if (key.Key == ConsoleKey.DownArrow)
+                {
+                    puzzle = Todown(puzzle);
+                }
+                else if (key.Key == ConsoleKey.UpArrow)
+                {
+                    puzzle = Toup(puzzle);
+                }
+                else if (key.Key == ConsoleKey.RightArrow)
+                {
+                    puzzle = Toright(puzzle);
+                }
+                else if (key.Key == ConsoleKey.LeftArrow)
+                {
+                    puzzle = Toleft(puzzle);
+                }
             }
-            else if (key.Key == ConsoleKey.UpArrow)
+            else { Console.WriteLine("You wisn:)"); }
+        }
+    }
+    #endregion
+
+
+    #region check
+    static bool AreArraysEqual(string[,] arr1, string[,] arr2)
+    {
+        if (arr1.GetLength(0) != arr2.GetLength(0) || arr1.GetLength(1) != arr2.GetLength(1))
+        {
+            return false;
+        }
+
+        for (int i = 0; i < arr1.GetLength(0); i++)
+        {
+            for (int j = 0; j < arr1.GetLength(1); j++)
             {
-                puzzle = Toup(puzzle);
-            }
-            else if (key.Key == ConsoleKey.RightArrow)
-            {
-                puzzle = Toright(puzzle);
-            }
-            else if (key.Key == ConsoleKey.LeftArrow)
-            {
-                puzzle = Toleft(puzzle);
+                if (arr1[i, j] != arr2[i, j])
+                {
+                    return false;
+                }
             }
         }
+
+        return true;
     }
     #endregion
 
